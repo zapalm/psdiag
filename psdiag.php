@@ -20,7 +20,7 @@ require_once dirname(__FILE__) . '/config/config.inc.php';
  * @author    zapalm <zapalm@ya.ru>
  * @copyright 2017 zapalm
  * @license   Open Software License (OSL 3.0)
- * @link      http://zapalm.ru/ Personal page
+ * @link      https://prestashop.modulez.ru/en/tools-scripts/50-prestashop-diagnostic-tool.html Homepage
  */
 class PsDiag extends ConfigurationTestCore {
 
@@ -30,7 +30,7 @@ class PsDiag extends ConfigurationTestCore {
     /**
      * PsDiag constructor.
      */
-    public function __construct(){
+    public function __construct() {
         $this->console = ('cli' === php_sapi_name());
     }
 
@@ -40,10 +40,7 @@ class PsDiag extends ConfigurationTestCore {
      * @return array
      */
     public function diagnose() {
-        $possibleTests = array_merge(
-            self::getDefaultTests(),
-            self::getDefaultTestsOp()
-        );
+        $possibleTests = array_merge(self::getDefaultTests(), self::getDefaultTestsOp());
 
         $neededTests = array(
             'phpversion'                    => 'PHP >= 5.2.0 (it is minimal requirement). Recommended PHP >= 5.4.0. Installed: ' . phpversion(),
