@@ -13,7 +13,7 @@ Examples:
 First of all the PrestaShop diagnose should be done from a web browser because it is the web application.
 
 ## Report example
-
+```
 Running from web browser.
 [ok] : Upload files (it is mandatory)
 [ok] : Check recursive write permissions on /cache/
@@ -41,3 +41,4 @@ Running from web browser.
 [ok] : PHP magic quotes option (should be disabled)
 [ok] : Dom extension (recommended to be enabled)
 [ok] : PDO MySQL extension (recommended to be enabled)
+```
