@@ -1,0 +1,2 @@
+# psdiag
+PrestaShop diagnostic tool
