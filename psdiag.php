@@ -1,4 +1,13 @@
 <?php
+/**
+ * PrestaShop diagnostic tool.
+ *
+ * @author    Maksim T. <zapalm@yandex.com>
+ * @copyright 2018 Maksim T.
+ * @license   Open Software License (OSL 3.0)
+ * @link      https://github.com/zapalm/psdiag GitHub
+ * @link      https://prestashop.modulez.ru/en/tools-scripts/50-prestashop-diagnostic-tool.html Homepage
+ */
 
 $configPath = dirname(__FILE__) . '/config/config.inc.php';
 if (false === file_exists($configPath)) {
@@ -8,24 +17,11 @@ if (false === file_exists($configPath)) {
 require_once $configPath;
 
 /**
- * PrestaShop (1.5, 1.6, 1.7) diagnostic tool.
+ * PrestaShop diagnostic tool.
  *
- * How to use: copy this file (psdiag.php) to your PrestaShop root directory (where there are index.php, init.php and so on).
- * Run this script via web browser or from console.
+ * @version 1.0.0
  *
- * Examples:
- *
- * 1) Run from browser: http://localhost/prestashop/psdiag.php
- *
- * 2) Run from console: php psdiag.php
- *
- * First of all the PrestaShop diagnose should be done from a web browser because it is the web application.
- *
- * @version   1.0.0
- * @author    zapalm <zapalm@ya.ru>
- * @copyright 2017 zapalm
- * @license   Open Software License (OSL 3.0)
- * @link      https://prestashop.modulez.ru/en/tools-scripts/50-prestashop-diagnostic-tool.html Homepage
+ * @author Maksim T. <zapalm@yandex.com>
  */
 class PsDiag extends ConfigurationTestCore {
 
@@ -34,15 +30,19 @@ class PsDiag extends ConfigurationTestCore {
 
     /**
      * PsDiag constructor.
+     *
+     * @author Maksim T. <zapalm@yandex.com>
      */
     public function __construct() {
         $this->console = ('cli' === php_sapi_name());
     }
 
     /**
-     * Diagnose.
+     * Returns the diagnose result.
      *
-     * @return array
+     * @return array The diagnose result.
+     *
+     * @author Maksim T. <zapalm@yandex.com>
      */
     public function diagnose() {
         $possibleTests = array_merge(self::getDefaultTests(), self::getDefaultTestsOp());
@@ -87,9 +87,11 @@ class PsDiag extends ConfigurationTestCore {
     }
 
     /**
-     * Print the report to browser or console.
+     * Prints a given report to a browser or to a console.
      *
-     * @param array $report
+     * @param array $report The report given by diagnose().
+     *
+     * @author Maksim T. <zapalm@yandex.com>
      */
     public function printReport(array $report) {
         $message = 'Running from ' . ($this->console ? 'console' : 'web browser') . '.' . PHP_EOL;
