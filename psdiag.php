@@ -1,6 +1,11 @@
 <?php
 
-require_once dirname(__FILE__) . '/config/config.inc.php';
+$configPath = dirname(__FILE__) . '/config/config.inc.php';
+if (false === file_exists($configPath)) {
+    exit('The file of the tool is placed incorrectly. You should place the file to the root of your PrestaShop installation directory.' . PHP_EOL);
+}
+
+require_once $configPath;
 
 /**
  * PrestaShop (1.5, 1.6, 1.7) diagnostic tool.
