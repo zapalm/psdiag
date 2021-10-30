@@ -1,0 +1,32 @@
+{
+  "name": "zapalm/psdiag",
+  "type": "library",
+  "description": "Diagnostic tool for PrestaShop CMS.",
+  "keywords": [
+    "prestashop",
+    "diagnostic",
+    "tool",
+    "php-library"
+  ],
+  "homepage": "https://prestashop.modulez.ru/en/tools-scripts/50-prestashop-diagnostic-tool.html",
+  "license": "OSL-3.0",
+  "authors": [
+    {
+      "name": "Maksim T.",
+      "email": "zapalm@yandex.com",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "zapalm\\": ""
+    }
+  },
+  "config": {
+    "preferred-install": "dist"
+  }
+}
