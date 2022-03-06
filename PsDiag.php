@@ -316,11 +316,13 @@ class PsDiag extends ConfigurationTest
     /**
      * Returns software information.
      *
+     * @param bool $isSiteHasConfigurationIssues
+     *
      * @return string[]
      *
      * @author Maksim T. <zapalm@yandex.com>
      */
-    public function getSoftwareInfo()
+    public function getSoftwareInfo($isSiteHasConfigurationIssues)
     {
         return [
             'PrestaShop version' => (float)_PS_VERSION_ . ' (' . _PS_VERSION_ . ')',
@@ -330,6 +332,7 @@ class PsDiag extends ConfigurationTest
                 : 'ionCube not enabled'
             ),
             'PrestaShop classes override system enabled' => (Configuration::get('PS_DISABLE_OVERRIDES') ? 'No' : 'Yes'),
+            'The site has configuration issues'          => ($isSiteHasConfigurationIssues ? 'Yes' : 'No'),
         ];
     }
 
@@ -344,8 +347,18 @@ class PsDiag extends ConfigurationTest
      */
     public function printReport(array $report)
     {
-        $message = 'SOFTWARE INFORMATION:' . PHP_EOL;
-        foreach (static::getSoftwareInfo() as $infoKey => $infoValue) {
+        $isSiteHasConfigurationIssues = false;
+        foreach ($report as $testResult) {
+            if ('ok' !== $testResult[0]) {
+                $isSiteHasConfigurationIssues = true;
+
+                break;
+            }
+        }
+
+        $message      = 'SOFTWARE INFORMATION:' . PHP_EOL;
+        $softwareInfo = static::getSoftwareInfo($isSiteHasConfigurationIssues);
+        foreach ($softwareInfo as $infoKey => $infoValue) {
             $message .= $infoKey . ': ' . $infoValue . PHP_EOL;
         }
 
