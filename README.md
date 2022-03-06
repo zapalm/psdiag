@@ -14,6 +14,7 @@ PrestaShop version: 1.7 (1.7.6.8)
 PHP version: 5.6 (5.6.38)
 ionCube version: 10.3.9
 PrestaShop classes override system enabled: Yes
+The site has configuration issues: Yes
 
 REQUIREMENTS:
 [fail] : Checking PHP compatibility. Minimum but not recommended PHP version: 5.6. Maximum PHP version: 7.2. Your PHP version: 5.6.38.
@@ -36,6 +37,7 @@ REQUIREMENTS:
 [ok] : Checking PHP configuration. The option "allow_url_fopen" must be "On".
 [ok] : Checking PHP configuration. The option "allow_url_include" must be "Off".
 [ok] : Checking PHP configuration. The option "file_uploads" must be "On".
+[ok] : Checking PHP configuration. The value of these options must be empty: "auto_prepend_file" and "auto_append_file".
 [ok] : Checking write permissions (recommended: 0755) for the directory: app/Resources/translations.
 [ok] : Checking write permissions (recommended: 0755) for the directory: app/config.
 [ok] : Checking write permissions (recommended: 0755) for the directory: cache.
