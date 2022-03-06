@@ -93,6 +93,7 @@ class PsDiag extends ConfigurationTest
             [    // New tests
                 'allow_url_include' => false,
                 'ioncube_version'   => false,
+                'auto_include_file' => false,
             ]
         );
 
@@ -114,6 +115,7 @@ class PsDiag extends ConfigurationTest
             'upload'                        => 'Checking PHP configuration. The option "file_uploads" must be "On"',
             'fopen'                         => 'Checking PHP configuration. The option "allow_url_fopen" must be "On"',
             'allow_url_include'             => 'Checking PHP configuration. The option "allow_url_include" must be "Off"',
+            'auto_include_file'             => 'Checking PHP configuration. The value of these options must be empty: "auto_prepend_file" and "auto_append_file" (for security reasons and for the operation of some modules)',
             'register_globals'              => 'Checking PHP configuration. The option "register_globals" must be "Off"',
             'magicquotes'                   => 'Checking PHP configuration. These options must be "Off": "magic_quotes_gpc", "magic_quotes_runtime", "magic_quotes_sybase"',
             'system'                        => 'Checking PHP configuration. Functions must be enabled: fclose, fread, fwrite, rename, file_exists, unlink, rmdir, mkdir, getcwd, chdir, chmod',
@@ -226,6 +228,20 @@ class PsDiag extends ConfigurationTest
         return ('' === $value
             || false === in_array($value, ['on', '1'])
         );
+    }
+
+    /**
+     * Test: PHP options "auto_prepend_file" and "auto_append_file" must be disabled.
+     *
+     * @return bool True if the test passed.
+     *
+     * @noinspection PhpUnused
+     *
+     * @author Maksim T. <zapalm@yandex.com>
+     */
+    public static function test_auto_include_file()
+    {
+        return ('' === ini_get('auto_prepend_file') && '' === ini_get('auto_append_file'));
     }
 
     /**
