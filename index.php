@@ -7,11 +7,9 @@
  * @license   Open Software License (OSL 3.0)
  * @link      https://github.com/zapalm/psdiag GitHub
  * @link      https://prestashop.modulez.ru/en/tools-scripts/50-prestashop-diagnostic-tool.html Homepage
+ *
+ * This is the script, that diagnose a site on PrestaShop and prints a report.
  */
-
-if (version_compare(phpversion(), '5.4.0', '<')) {
-    exit('The minimum PHP version to run this script is 5.4.');
-}
 
 $configPath = __DIR__ . '/../config/config.inc.php';
 if (false === file_exists($configPath)) {

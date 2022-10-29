@@ -1,6 +1,7 @@
 {
   "name": "zapalm/psdiag",
   "type": "library",
+  "version": "2.2.0",
   "description": "Diagnostic tool for PrestaShop CMS.",
   "keywords": [
     "prestashop",
@@ -19,7 +20,7 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": ">=5.4"
+    "php": ">=5.2"
   },
   "autoload": {
     "psr-4": {

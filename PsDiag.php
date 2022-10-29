@@ -17,8 +17,6 @@ use ConfigurationTest;
 /**
  * PrestaShop diagnostic tool.
  *
- * @version 2.1.0
- *
  * @author Maksim T. <zapalm@yandex.com>
  */
 class PsDiag extends ConfigurationTest
@@ -49,25 +47,25 @@ class PsDiag extends ConfigurationTest
      */
     public static function getPhpCompatibility()
     {
-        $phpCompatibilityDatasheet = [
-            '1.5.0' => ['Minimum' => '5.2', 'Recommended' => '5.6', 'Maximum' => '5.6'],
-            '1.6.0' => ['Minimum' => '5.2', 'Recommended' => '5.6', 'Maximum' => '5.6'],
-            '1.7.0' => ['Minimum' => '5.4', 'Recommended' => '7.1', 'Maximum' => '7.1'],
-            '1.7.1' => ['Minimum' => '5.4', 'Recommended' => '7.1', 'Maximum' => '7.1'],
-            '1.7.2' => ['Minimum' => '5.4', 'Recommended' => '7.1', 'Maximum' => '7.1'],
-            '1.7.3' => ['Minimum' => '5.4', 'Recommended' => '7.1', 'Maximum' => '7.1'],
-            '1.7.4' => ['Minimum' => '5.6', 'Recommended' => '7.1', 'Maximum' => '7.1'],
-            '1.7.5' => ['Minimum' => '5.6', 'Recommended' => '7.1', 'Maximum' => '7.2'],
-            '1.7.6' => ['Minimum' => '5.6', 'Recommended' => '7.1', 'Maximum' => '7.2'],
-            '1.7.7' => ['Minimum' => '7.1', 'Recommended' => '7.1', 'Maximum' => '7.3'],
-            '1.7.8' => ['Minimum' => '7.1', 'Recommended' => '7.1', 'Maximum' => '7.4'],
-        ];
+        $phpCompatibilityDatasheet = array(
+            '1.5.0' => array('Minimum' => '5.2', 'Recommended' => '5.6', 'Maximum' => '5.6'),
+            '1.6.0' => array('Minimum' => '5.2', 'Recommended' => '5.6', 'Maximum' => '5.6'),
+            '1.7.0' => array('Minimum' => '5.4', 'Recommended' => '7.1', 'Maximum' => '7.1'),
+            '1.7.1' => array('Minimum' => '5.4', 'Recommended' => '7.1', 'Maximum' => '7.1'),
+            '1.7.2' => array('Minimum' => '5.4', 'Recommended' => '7.1', 'Maximum' => '7.1'),
+            '1.7.3' => array('Minimum' => '5.4', 'Recommended' => '7.1', 'Maximum' => '7.1'),
+            '1.7.4' => array('Minimum' => '5.6', 'Recommended' => '7.1', 'Maximum' => '7.1'),
+            '1.7.5' => array('Minimum' => '5.6', 'Recommended' => '7.1', 'Maximum' => '7.2'),
+            '1.7.6' => array('Minimum' => '5.6', 'Recommended' => '7.1', 'Maximum' => '7.2'),
+            '1.7.7' => array('Minimum' => '7.1', 'Recommended' => '7.1', 'Maximum' => '7.3'),
+            '1.7.8' => array('Minimum' => '7.1', 'Recommended' => '7.1', 'Maximum' => '7.4'),
+        );
 
         list($branch, $major, $minor) = explode('.', _PS_VERSION_);
-        $psVersion = implode('.', [$branch, $major, $minor]);
+        $psVersion = implode('.', array($branch, $major, $minor));
 
         if (false === array_key_exists($psVersion, $phpCompatibilityDatasheet)) {
-            $psVersion = implode('.', [$branch, $major, 0]);
+            $psVersion = implode('.', array($branch, $major, 0));
 
             if (false === array_key_exists($psVersion, $phpCompatibilityDatasheet)) {
                 end($phpCompatibilityDatasheet);
@@ -90,28 +88,28 @@ class PsDiag extends ConfigurationTest
         $possibleTests = array_merge(
             static::getDefaultTests(),
             static::getDefaultTestsOp(),
-            [    // New tests
+            array( // New tests
                 'allow_url_include' => false,
                 'ioncube_version'   => false,
                 'auto_include_file' => false,
-            ]
+            )
         );
 
         unset($possibleTests['mysql_support']); // See improved "pdo_mysql" test
         unset($possibleTests['files']);         // The useless test
 
-        $testsDescriptions = [
-            'new_phpversion'                => implode('. ', [
-                'Checking PHP compatibility',
+        $testsDescriptions = array(
+            'phpversion'                    => implode('. ', array(
+                'Checking required PHP compatibility',
                 'Minimum but not recommended PHP version: ' . static::$phpCompatibility['Minimum'],
                 'Maximum PHP version: ' . static::$phpCompatibility['Maximum'],
                 'Your PHP version: ' . phpversion(),
-            ]),
-            'phpversion'                    => implode('. ', [
-                'Checking PHP compatibility',
+            )),
+            'new_phpversion'                => implode('. ', array(
+                'Checking recommended PHP compatibility',
                 'Recommended PHP version: ' . static::$phpCompatibility['Recommended'],
                 'So that your PrestaShop is compatible with as many modules as possible and works stably',
-            ]),
+            )),
             'upload'                        => 'Checking PHP configuration. The option "file_uploads" must be "On"',
             'fopen'                         => 'Checking PHP configuration. The option "allow_url_fopen" must be "On"',
             'allow_url_include'             => 'Checking PHP configuration. The option "allow_url_include" must be "Off"',
@@ -148,11 +146,11 @@ class PsDiag extends ConfigurationTest
             'customizable_products_dir'     => 'Checking write permissions (recommended: 0755) for the directory: upload',
             'virtual_products_dir'          => 'Checking write permissions (recommended: 0755) for the directory: download',
             'apache_mod_rewrite'            => 'Checking Apache2 configuration. The module "mod_rewrite" must be enabled',
-        ];
+        );
 
         $testsResult = static::check($possibleTests);
 
-        $report = [];
+        $report = array();
         foreach ($testsResult as $testId => $testResult) {
             if (array_key_exists($testId, $testsDescriptions)) {
                 $description = $testsDescriptions[$testId];
@@ -160,24 +158,12 @@ class PsDiag extends ConfigurationTest
                 $description = $testId;
             }
 
-            $report[$testId] = [$testResult, $description . '.'];
+            $report[$testId] = array($testResult, $description . '.');
         }
 
         asort($report);
 
         return $report;
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @author Maksim T. <zapalm@yandex.com>
-     */
-    public static function test_new_phpversion()
-    {
-        return (version_compare(phpversion(), static::$phpCompatibility['Recommended'] . '.0', '>=')
-            && version_compare(phpversion(), static::$phpCompatibility['Maximum'] . '.99', '<=')
-        );
     }
 
     /**
@@ -187,7 +173,7 @@ class PsDiag extends ConfigurationTest
      *
      * @author Maksim T. <zapalm@yandex.com>
      */
-    public static function test_phpversion()
+    public static function test_new_phpversion()
     {
         return (version_compare(phpversion(), static::$phpCompatibility['Recommended'] . '.0', '>=')
             && version_compare(phpversion(), static::$phpCompatibility['Recommended'] . '.99', '<=')
@@ -195,7 +181,23 @@ class PsDiag extends ConfigurationTest
     }
 
     /**
-     * @inheritDoc
+     * Test: Running PHP version must be in a supported range.
+     *
+     * @return bool True if the test passed.
+     *
+     * @author Maksim T. <zapalm@yandex.com>
+     */
+    public static function test_phpversion()
+    {
+        return (version_compare(phpversion(), static::$phpCompatibility['Minimum'] . '.0', '>=')
+            && version_compare(phpversion(), static::$phpCompatibility['Maximum'] . '.99', '<=')
+        );
+    }
+
+    /**
+     * Test: The actual PHP extension must be installed to work with MySQL database.
+     *
+     * @return bool True if the test passed.
      *
      * @author Maksim T. <zapalm@yandex.com>
      */
@@ -226,7 +228,7 @@ class PsDiag extends ConfigurationTest
         $value = strtolower((string)ini_get('allow_url_include'));
 
         return ('' === $value
-            || false === in_array($value, ['on', '1'])
+            || false === in_array($value, array('on', '1'))
         );
     }
 
@@ -267,7 +269,7 @@ class PsDiag extends ConfigurationTest
      */
     public static function check($tests)
     {
-        $result = [];
+        $result = array();
 
         foreach ($tests as $key => $test) {
             $result[$key] = static::run($key, $test);
@@ -277,13 +279,15 @@ class PsDiag extends ConfigurationTest
     }
 
     /**
-     * @inheritDoc
+     * Runs a test.
+     *
+     * @return string If a test is passed: "ok", else: "fail".
      *
      * @author Maksim T. <zapalm@yandex.com>
      */
     public static function run($ptr, $arg = 0)
     {
-        if (call_user_func([get_called_class(), 'test_' . $ptr], $arg)) {
+        if (call_user_func(array(get_called_class(), 'test_' . $ptr), $arg)) {
             return 'ok';
         }
 
@@ -324,7 +328,7 @@ class PsDiag extends ConfigurationTest
      */
     public function getSoftwareInfo($isSiteHasConfigurationIssues)
     {
-        return [
+        return array(
             'PrestaShop version' => (float)_PS_VERSION_ . ' (' . _PS_VERSION_ . ')',
             'PHP version'        => (float)phpversion() . ' (' . phpversion() . ')',
             'ionCube version'    => (false !== static::getIonCubeVersion()
@@ -333,7 +337,7 @@ class PsDiag extends ConfigurationTest
             ),
             'PrestaShop classes override system enabled' => (Configuration::get('PS_DISABLE_OVERRIDES') ? 'No' : 'Yes'),
             'The site has configuration issues'          => ($isSiteHasConfigurationIssues ? 'Yes' : 'No'),
-        ];
+        );
     }
 
     /**
