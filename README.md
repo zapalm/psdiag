@@ -72,7 +72,7 @@ Add the dependency directly to your `composer.json` file:
   }
 ],
 "require": {
-  "php": ">=5.4",
+  "php": ">=5.2",
   "zapalm/psdiag": "dev-master"
 },
 ```
