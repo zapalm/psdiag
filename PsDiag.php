@@ -101,14 +101,14 @@ class PsDiag extends ConfigurationTest
         unset($possibleTests['files']);         // The useless test
 
         $testsDescriptions = [
-            'new_phpversion'                => implode('. ', [
-                'Checking PHP compatibility',
+            'phpversion'                    => implode('. ', [
+                'Checking required PHP compatibility',
                 'Minimum but not recommended PHP version: ' . static::$phpCompatibility['Minimum'],
                 'Maximum PHP version: ' . static::$phpCompatibility['Maximum'],
                 'Your PHP version: ' . phpversion(),
             ]),
-            'phpversion'                    => implode('. ', [
-                'Checking PHP compatibility',
+            'new_phpversion'                => implode('. ', [
+                'Checking recommended PHP compatibility',
                 'Recommended PHP version: ' . static::$phpCompatibility['Recommended'],
                 'So that your PrestaShop is compatible with as many modules as possible and works stably',
             ]),
@@ -169,19 +169,21 @@ class PsDiag extends ConfigurationTest
     }
 
     /**
-     * @inheritDoc
+     * Test: Running PHP version must be in a recommended range.
+     *
+     * @return bool True if the test passed.
      *
      * @author Maksim T. <zapalm@yandex.com>
      */
     public static function test_new_phpversion()
     {
         return (version_compare(phpversion(), static::$phpCompatibility['Recommended'] . '.0', '>=')
-            && version_compare(phpversion(), static::$phpCompatibility['Maximum'] . '.99', '<=')
+            && version_compare(phpversion(), static::$phpCompatibility['Recommended'] . '.99', '<=')
         );
     }
 
     /**
-     * Test: Running PHP version must be in a recommended range.
+     * Test: Running PHP version must be in a supported range.
      *
      * @return bool True if the test passed.
      *
@@ -189,8 +191,8 @@ class PsDiag extends ConfigurationTest
      */
     public static function test_phpversion()
     {
-        return (version_compare(phpversion(), static::$phpCompatibility['Recommended'] . '.0', '>=')
-            && version_compare(phpversion(), static::$phpCompatibility['Recommended'] . '.99', '<=')
+        return (version_compare(phpversion(), static::$phpCompatibility['Minimum'] . '.0', '>=')
+            && version_compare(phpversion(), static::$phpCompatibility['Maximum'] . '.99', '<=')
         );
     }
 
