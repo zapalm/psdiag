@@ -7,6 +7,8 @@
  * @license   Open Software License (OSL 3.0)
  * @link      https://github.com/zapalm/psdiag GitHub
  * @link      https://prestashop.modulez.ru/en/tools-scripts/50-prestashop-diagnostic-tool.html Homepage
+ *
+ * This is the script, that diagnose a site on PrestaShop and prints a report.
  */
 
 $configPath = __DIR__ . '/../config/config.inc.php';

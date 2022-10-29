@@ -197,7 +197,9 @@ class PsDiag extends ConfigurationTest
     }
 
     /**
-     * @inheritDoc
+     * Test: The actual PHP extension must be installed to work with MySQL database.
+     *
+     * @return bool True if the test passed.
      *
      * @author Maksim T. <zapalm@yandex.com>
      */
@@ -279,7 +281,9 @@ class PsDiag extends ConfigurationTest
     }
 
     /**
-     * @inheritDoc
+     * Runs a test.
+     *
+     * @return string If a test is passed: "ok", else: "fail".
      *
      * @author Maksim T. <zapalm@yandex.com>
      */

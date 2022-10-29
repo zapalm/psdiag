@@ -17,8 +17,7 @@ PrestaShop classes override system enabled: Yes
 The site has configuration issues: Yes
 
 REQUIREMENTS:
-[fail] : Checking PHP compatibility. Minimum but not recommended PHP version: 5.6. Maximum PHP version: 7.2. Your PHP version: 5.6.38.
-[fail] : Checking PHP compatibility. Recommended PHP version: 7.1. So that your PrestaShop is compatible with as many modules as possible and works stably.
+[fail] : Checking recommended PHP compatibility. Recommended PHP version: 7.1. So that your PrestaShop is compatible with as many modules as possible and works stably.
 [ok] : Checking Apache2 configuration. The module "mod_rewrite" must be enabled.
 [ok] : Checking PHP configuration. Functions must be enabled: fclose, fread, fwrite, rename, file_exists, unlink, rmdir, mkdir, getcwd, chdir, chmod.
 [ok] : Checking PHP configuration. Recommended to install "Zlib" extension.
@@ -37,7 +36,8 @@ REQUIREMENTS:
 [ok] : Checking PHP configuration. The option "allow_url_fopen" must be "On".
 [ok] : Checking PHP configuration. The option "allow_url_include" must be "Off".
 [ok] : Checking PHP configuration. The option "file_uploads" must be "On".
-[ok] : Checking PHP configuration. The value of these options must be empty: "auto_prepend_file" and "auto_append_file".
+[ok] : Checking PHP configuration. The value of these options must be empty: "auto_prepend_file" and "auto_append_file" (for security reasons and for the operation of some modules).
+[ok] : Checking required PHP compatibility. Minimum but not recommended PHP version: 5.6. Maximum PHP version: 7.2. Your PHP version: 5.6.38.
 [ok] : Checking write permissions (recommended: 0755) for the directory: app/Resources/translations.
 [ok] : Checking write permissions (recommended: 0755) for the directory: app/config.
 [ok] : Checking write permissions (recommended: 0755) for the directory: cache.
@@ -102,7 +102,7 @@ Contributors wishing to edit the project's files should follow the following pro
 5. Change the files in your branch. Be sure to follow [the coding standards][2].
 6. Push your changed branch to your fork in your GitHub account.
 7. Create a pull request for your changes **on the *dev* branch** of the project.
-   If you need help to make a pull request, read the [Github help page about creating pull requests][3].
+   If you need help to make a pull request, read the [GitHub help page about creating pull requests][3].
 8. Wait for the maintainer to apply your changes.
 
 **Do not hesitate to create a pull request if even it's hard for you to apply the coding standards.**
