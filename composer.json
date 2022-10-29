@@ -1,6 +1,7 @@
 {
   "name": "zapalm/psdiag",
   "type": "library",
+  "version": "2.2.0",
   "description": "Diagnostic tool for PrestaShop CMS.",
   "keywords": [
     "prestashop",

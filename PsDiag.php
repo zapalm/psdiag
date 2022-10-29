@@ -17,8 +17,6 @@ use ConfigurationTest;
 /**
  * PrestaShop diagnostic tool.
  *
- * @version 2.1.0
- *
  * @author Maksim T. <zapalm@yandex.com>
  */
 class PsDiag extends ConfigurationTest
